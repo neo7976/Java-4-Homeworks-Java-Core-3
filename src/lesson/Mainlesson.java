@@ -6,11 +6,11 @@ import java.io.IOException;
 public class Mainlesson {
     public static void main(String[] args) {
 
-        // определяем объект для каталога
-        File dir = new File("SomeDir");
-// пробуем создать каталог
-        if (dir.mkdir())
-            System.out.println("Каталог создан");
+//        // определяем объект для каталога
+//        File dir = new File("SomeDir");
+//// пробуем создать каталог
+//        if (dir.mkdir())
+//            System.out.println("Каталог создан");
 //
 //
 //// определяем новый объект для каталога
@@ -41,7 +41,7 @@ public class Mainlesson {
 
 
 //        // определяем объект для файла
-//        File myFile = new File("SomeDir/notes.txt");
+//        File myFile = new File("./src/notesss.txt");
 //// создадим новый файл
 //        try {
 //            if (myFile.createNewFile())
@@ -49,9 +49,9 @@ public class Mainlesson {
 //        } catch (IOException ex) {
 //            System.out.println(ex.getMessage());
 //        }
-//
-//
-//
+
+
+
 
 
 //        System.out.println("Имя файла: " + myFile.getName());
