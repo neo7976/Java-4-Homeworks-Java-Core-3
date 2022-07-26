@@ -1,6 +1,7 @@
 package homework.task1;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Task1 {
@@ -36,27 +37,30 @@ public class Task1 {
         File utilsJava = new File(mainSrc, "Utils.java");
         fileCreation(utilsJava);
 
+        //4
+        File drawables = new File(resGames, "drawables");
+        folderCreation(drawables);
+        File vector = new File(resGames, "vector");
+        folderCreation(vector);
+        File icons = new File(resGames, "icons");
+        folderCreation(icons);
 
         //5
         File temp = new File(tempGames, "temp.txt");
-        try {
-            if (temp.createNewFile())
-                System.out.println("Успех!!!");
+        fileCreation(temp);
+
+        try (FileWriter writer = new FileWriter(temp, false)) {
+            writer.write(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        System.out.println(sb.toString());
-
-
     }
 
     private static void fileCreation(File mainJava) {
         try {
             if (mainJava.createNewFile())
                 sb.append(mainJava).append(" - Файл успешно создан\n");
-            else if(mainJava.isFile())
+            else if (mainJava.isFile())
                 sb.append(mainJava).append("- Файл уже существует\n");
             else
                 sb.append(mainJava).append(" - Файл не был создан\n");
