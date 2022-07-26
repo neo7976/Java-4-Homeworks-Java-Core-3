@@ -11,7 +11,7 @@ public class Task1 {
     public static void main(String[] args) {
 
 
-        File games = new File("src/homework/task1/Games");
+        File games = new File("C://Games");
         folderCreation(games);
 
         //1
