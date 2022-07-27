@@ -1,11 +1,12 @@
 package homework.task2;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Task2 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         GameProgress gameProgress1 = new GameProgress(90, 10, 2, 21.5);
         GameProgress gameProgress2 = new GameProgress(65, 14, 8, 58.4);
         GameProgress gameProgress3 = new GameProgress(15, 2, 15, 102.9);
@@ -14,24 +15,27 @@ public class Task2 {
         saveGame(gameProgress2, "save2");
         saveGame(gameProgress3, "save3");
 
-        zipFiles("E:/JavaHome/savegames/", "save1");
+        zipFiles("E:/JavaHome/savegames/", "save1", "save2", "save3");
 
 
     }
 
-    private static void zipFiles(String zipWay, String saveFile) {
-        try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipWay + "zip.zip"));
-             FileInputStream fis = new FileInputStream(zipWay+saveFile+".data")) {
+    private static void zipFiles(String zipWay, String... savesFile) {
+        for (String saveFile : savesFile) {
 
-            ZipEntry entry = new ZipEntry(saveFile);
-            zos.putNextEntry(entry);
-            byte[] buffer = new byte[fis.available()];
-            fis.read(buffer);
-            zos.write(buffer);
-            zos.closeEntry();
+            try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipWay + "zip.zip"));
+                 FileInputStream fis = new FileInputStream(zipWay + saveFile + ".data")) {
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+                ZipEntry entry = new ZipEntry(saveFile);
+                zos.putNextEntry(entry);
+                byte[] buffer = new byte[fis.available()];
+                fis.read(buffer);
+                zos.write(buffer);
+                zos.closeEntry();
+
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -43,4 +47,6 @@ public class Task2 {
             System.out.println(e.getMessage());
         }
     }
+
 }
+
