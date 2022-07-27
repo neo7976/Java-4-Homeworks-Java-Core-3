@@ -20,19 +20,16 @@ public class Task2 {
 
         zipFiles("E:/JavaHome/savegames/", "save1.data", "save2.data", "save3.data");
 
-
-        //todo удаление файла
-
         if (gameDirectory.isDirectory()) {
             for (File file : gameDirectory.listFiles()) {
-                if (file.isFile()) {
-                    file.getName().contains(".data");
-                    System.out.println(file + " - удален!");
+                if (file.getName().contains(EXTENSION)) {
+                    if (file.delete())
+                        System.out.println(file + " - удален!");
+                    else
+                        System.out.println(file + " - удалить не получилось! ");
                 }
             }
         }
-
-
     }
 
     private static void zipFiles(String zipWay, String... savesFile) throws IOException {
@@ -45,6 +42,7 @@ public class Task2 {
             fis.read(buffer);
             zos.write(buffer);
             zos.closeEntry();
+            fis.close();
         }
         zos.close();
     }
