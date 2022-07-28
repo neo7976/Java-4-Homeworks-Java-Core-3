@@ -8,48 +8,29 @@ public class Task1 {
 
     static StringBuilder sb = new StringBuilder();
 
+    public static final String EXTENSION = "C:/JavaHome";
+
     public static void main(String[] args) {
 
-
-        File games = new File("E:/JavaHome");
+        File games = new File(EXTENSION);
         folderCreation(games);
 
         //1
-        File srcGames = new File(games, "src");
-        folderCreation(srcGames);
-        File resGames = new File(games, "res");
-        folderCreation(resGames);
-        File saveGames = new File(games, "savegames");
-        folderCreation(saveGames);
-        File tempGames = new File(games, "temp");
-        folderCreation(tempGames);
+        createFolderOrFile(EXTENSION, "src", "res", "savegames", "temp");
 
         //2
-        File mainSrc = new File(srcGames, "main");
-        folderCreation(mainSrc);
-        File testSrc = new File(srcGames, "test");
-        folderCreation(testSrc);
+        createFolderOrFile(EXTENSION + "/src", "main", "test");
 
         //3
-        File mainJava = new File(mainSrc, "Main.java");
-        fileCreation(mainJava);
-
-        File utilsJava = new File(mainSrc, "Utils.java");
-        fileCreation(utilsJava);
+        createFolderOrFile(EXTENSION + "/src/main", "Main.java", "Utils.java");
 
         //4
-        File drawables = new File(resGames, "drawables");
-        folderCreation(drawables);
-        File vector = new File(resGames, "vector");
-        folderCreation(vector);
-        File icons = new File(resGames, "icons");
-        folderCreation(icons);
+        createFolderOrFile(EXTENSION + "/res", "drawables", "vector", "icons");
 
         //5
-        File temp = new File(tempGames, "temp.txt");
-        fileCreation(temp);
+        createFolderOrFile(EXTENSION + "/temp", "temp.txt");
 
-        try (FileWriter writer = new FileWriter(temp, false)) {
+        try (FileWriter writer = new FileWriter(EXTENSION + "/temp/temp.txt", false)) {
             writer.write(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -76,5 +57,15 @@ public class Task1 {
             sb.append(games).append(" - Папка уже существует\n");
         else
             sb.append(games).append(" - Папка не была создана\n");
+    }
+
+    public static void createFolderOrFile(String file, String... folderOrFile) {
+        for (String s : folderOrFile) {
+            File file1 = new File(file, s);
+            if (s.contains("."))
+                fileCreation(file1);
+            else
+                folderCreation(file1);
+        }
     }
 }
