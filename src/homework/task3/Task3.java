@@ -12,14 +12,14 @@ import java.util.zip.ZipInputStream;
 public class Task3 {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        openZip(Task2.P);
+        openZip(Task2.PATHNAME, "zip");
 
     }
 
-    public static void openZip(String zipWay) throws IOException {
-        ZipInputStream zis = new ZipInputStream(new FileInputStream(zipWay + ".zis"));
+    public static void openZip(String zipWay, String nameFile) throws IOException {
+        ZipInputStream zis = new ZipInputStream(new FileInputStream(zipWay + nameFile + ".zip"));
         ZipEntry entry;
         String name;
 
@@ -30,11 +30,9 @@ public class Task3 {
                 fos.write(c);
             }
             fos.flush();
-            zis.closeEntry();
             fos.close();
+            zis.closeEntry();
         }
-        zis.closeEntry();
-
-
+        zis.close();
     }
 }
