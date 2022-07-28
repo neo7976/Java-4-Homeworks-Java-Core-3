@@ -1,15 +1,17 @@
 package homework.task2;
 
 import java.io.*;
-import java.security.cert.Extension;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Task2 {
     private static final String EXTENSION = ".data";
 
+    static final String PATHNAME = "С:/JavaHome/savegames/";
+
     public static void main(String[] args) throws IOException {
-        File gameDirectory = new File("E:/JavaHome/savegames/");
+
+        File gameDirectory = new File(PATHNAME);
         GameProgress gameProgress1 = new GameProgress(90, 10, 2, 21.5);
         GameProgress gameProgress2 = new GameProgress(65, 14, 8, 58.4);
         GameProgress gameProgress3 = new GameProgress(15, 2, 15, 102.9);
@@ -18,7 +20,7 @@ public class Task2 {
         saveGame(gameProgress2, "save2.data");
         saveGame(gameProgress3, "save3.data");
 
-        zipFiles("E:/JavaHome/savegames/", "save1.data", "save2.data", "save3.data");
+        zipFiles(PATHNAME, "save1.data", "save2.data", "save3.data");
 
         if (gameDirectory.isDirectory()) {
             for (File file : gameDirectory.listFiles()) {
@@ -48,7 +50,7 @@ public class Task2 {
     }
 
     private static void saveGame(GameProgress gameProgress1, String saveDate) {
-        try (FileOutputStream fos = new FileOutputStream("E:/JavaHome/savegames/" + saveDate);
+        try (FileOutputStream fos = new FileOutputStream(PATHNAME + saveDate);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(gameProgress1);
         } catch (IOException e) {

@@ -8,29 +8,29 @@ public class Task1 {
 
     static StringBuilder sb = new StringBuilder();
 
-    public static final String EXTENSION = "C:/JavaHome";
+    public static final String PATHNAME = "C:/JavaHome";
 
     public static void main(String[] args) {
 
-        File games = new File(EXTENSION);
+        File games = new File(PATHNAME);
         folderCreation(games);
 
         //1
-        createFolderOrFile(EXTENSION, "src", "res", "savegames", "temp");
+        createFolderOrFile(PATHNAME, "src", "res", "savegames", "temp");
 
         //2
-        createFolderOrFile(EXTENSION + "/src", "main", "test");
+        createFolderOrFile(PATHNAME + "/src", "main", "test");
 
         //3
-        createFolderOrFile(EXTENSION + "/src/main", "Main.java", "Utils.java");
+        createFolderOrFile(PATHNAME + "/src/main", "Main.java", "Utils.java");
 
         //4
-        createFolderOrFile(EXTENSION + "/res", "drawables", "vector", "icons");
+        createFolderOrFile(PATHNAME + "/res", "drawables", "vector", "icons");
 
         //5
-        createFolderOrFile(EXTENSION + "/temp", "temp.txt");
+        createFolderOrFile(PATHNAME + "/temp", "temp.txt");
 
-        try (FileWriter writer = new FileWriter(EXTENSION + "/temp/temp.txt", false)) {
+        try (FileWriter writer = new FileWriter(PATHNAME + "/temp/temp.txt", false)) {
             writer.write(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();
