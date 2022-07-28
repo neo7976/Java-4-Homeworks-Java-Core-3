@@ -3,7 +3,6 @@ package homework.task3;
 import homework.task2.GameProgress;
 import homework.task2.Task2;
 
-
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;

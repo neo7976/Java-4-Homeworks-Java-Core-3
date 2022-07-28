@@ -8,7 +8,8 @@ public class GameProgress implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private transient int health; //transient - обнуляет значение, не дает записывать
+//    private transient int health; //transient - обнуляет значение, не дает записывать
+    private int health;
     private int weapons;
     private int lvl;
     private double distance;
