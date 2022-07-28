@@ -9,7 +9,7 @@ import java.util.zip.ZipOutputStream;
 public class Task2 {
     private static final String EXTENSION = ".data";
 
-    static final String PATHNAME = Task1.PATHNAME + "/savegames/";
+    public static final String PATHNAME = Task1.PATHNAME + "/savegames/";
 
     public static void main(String[] args) throws IOException {
 
